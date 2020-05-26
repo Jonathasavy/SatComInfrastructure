@@ -145,7 +145,7 @@ class IridiumInterface:
         self.__waiting_for_confirm[request] = (idx, data)
         print(idx, data)
         print(555)
-        print(self.__url, method='POST', body=body)
+        print(method='POST', body=body)
         self.__lock.release()
         self.__http_client.fetch(request, self.__on_message_sent)
 
