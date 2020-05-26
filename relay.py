@@ -144,6 +144,7 @@ class IridiumInterface:
         request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
         print(request)
         self.__waiting_for_confirm[request] = (idx, data)
+        print(idx, data)
         print(555)
         print(body)
         self.__lock.release()
