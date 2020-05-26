@@ -141,7 +141,7 @@ class IridiumInterface:
         LOGGER.warn('Sending MT message # %i to Iridium', idx)
         self.__post_data['data'] = data.encode('hex')
         body = tornado.httputil.urlencode(self.__post_data)
-        request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
+        tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
         self.__waiting_for_confirm[request] = (idx, data)
         print(idx, data)
         print(555)
