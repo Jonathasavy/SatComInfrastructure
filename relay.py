@@ -112,7 +112,7 @@ class IridiumInterface:
             thr_redeliver.daemon = True
             thr_redeliver.start()
             self.__threads.append(thr_redeliver)
-        
+
         self.__lock.release()
 
     def __repost_message(self, data, idx):
@@ -143,6 +143,7 @@ class IridiumInterface:
         body = tornado.httputil.urlencode(self.__post_data)
         request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
         self.__waiting_for_confirm[request] = (idx, data)
+        LOGGER.warn(idx, data)
         self.__lock.release()
         self.__http_client.fetch(request, self.__on_message_sent)
 
