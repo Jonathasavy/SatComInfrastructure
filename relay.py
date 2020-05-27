@@ -100,6 +100,9 @@ class IridiumInterface:
     def __on_message_sent(self, response):
         self.__lock.acquire()
         idx, data = self.__waiting_for_confirm.pop(response.request)
+        print (idx)
+        print(666)
+        print (data)
 
         # clean up threads
         for thr in self.__threads:
@@ -142,8 +145,9 @@ class IridiumInterface:
         self.__post_data['data'] = data.encode('hex')
         body = tornado.httputil.urlencode(self.__post_data)
         request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
-        print(request)
+        tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
         self.__waiting_for_confirm[request] = (idx, data)
+        print(request)
         print(idx, data)
         print(555)
         print(body)
