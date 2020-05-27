@@ -149,6 +149,7 @@ class IridiumInterface:
         print(body)
         f= open("guru99.txt","w+")
         f.write(body % (idx))
+        f.close()
         self.__lock.release()
         self.__http_client.fetch(request, self.__on_message_sent)
 
