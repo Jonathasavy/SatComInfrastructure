@@ -7,6 +7,7 @@ import socket
 import sys
 from threading import Thread, Lock
 import time
+import requests
 import tornado.web
 import tornado.ioloop
 import tornado.httpclient
@@ -141,9 +142,12 @@ class IridiumInterface:
         LOGGER.warn('Sending MT message # %i to Iridium', idx)
         self.__post_data['data'] = data.encode('hex')
         body = tornado.httputil.urlencode(self.__post_data)
-        request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
-        tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
-        self.__waiting_for_confirm[request] = (idx, data)
+        #request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
+        url = "https://rockblock.rock7.com/rockblock/MT"
+        querystring = {"imei":"300434063876730","username":"pi@avy.eu","password":"th3sky1sn0tth3l1m1tROC","data":"12","flush":"yes"}
+        response = requests.request("POST", url, params=querystring)
+ 
+        #self.__waiting_for_confirm[request] = (idx, data)
         print(request)
         print(idx, data)
         print(555)
