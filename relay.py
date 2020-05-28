@@ -144,9 +144,9 @@ class IridiumInterface:
         body = tornado.httputil.urlencode(self.__post_data)
         #request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
         url = "https://rockblock.rock7.com/rockblock/MT"
-        querystring = {body}
-        response = requests.request("POST", url, params=querystring)
-        print(response)
+        querystring = body
+        #response = requests.request("POST", url, params=querystring)
+        print(querystring)
         #self.__waiting_for_confirm[request] = (idx, data)
         # print(request)
         print(idx, body)
