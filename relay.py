@@ -142,7 +142,7 @@ class IridiumInterface:
         LOGGER.warn('Sending MT message # %i to Iridium', idx)
         self.__post_data['data'] = data.encode('hex')
         body = tornado.httputil.urlencode(self.__post_data)
-        request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body="imei=300434063876730&username=pi@avy.eu&password=th3sky1sn0tth3l1m1tROC&data=123")
+        request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body="imei=300434063876730&username=pi%40avy.eu&password=th3sky1sn0tth3l1m1tROC&data=123")
         #url = "https://rockblock.rock7.com/rockblock/MT"
         #querystring = body
         #response = requests.request("POST", self.__url, params=querystring)
