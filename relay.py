@@ -102,6 +102,7 @@ class IridiumInterface:
         self.__lock.acquire()
         idx, data = self.__waiting_for_confirm.pop(response.request)
 
+
         # clean up threads
         for thr in self.__threads:
             if not thr.is_alive():
@@ -115,6 +116,7 @@ class IridiumInterface:
             self.__threads.append(thr_redeliver)
 
         self.__lock.release()
+        print 
 
     def __repost_message(self, data, idx):
         time.sleep(10.0)
@@ -142,10 +144,10 @@ class IridiumInterface:
         LOGGER.warn('Sending MT message # %i to Iridium', idx)
         self.__post_data['data'] = data.encode('hex')
         body = tornado.httputil.urlencode(self.__post_data)
-        request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body="imei=300434063876730&username=pi%40avy.eu&password=th3sky1sn0tth3l1m1tROC&data=123")
-        #url = "https://rockblock.rock7.com/rockblock/MT"
-        #querystring = body
-        #response = requests.request("POST", self.__url, params=querystring)
+        #request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
+        url = "https://rockblock.rock7.com/rockblock/MT"
+        querystring = body
+        response = requests.request("POST", self.__url, params=querystring)
         #print(response)
         print(request)
         self.__waiting_for_confirm[request] = (idx, data)
@@ -154,6 +156,7 @@ class IridiumInterface:
         #print(body)
         self.__lock.release()
         self.__http_client.fetch(request, self.__on_message_sent)
+        
 
     def start(self):
         args = dict(cb=self.on_message_callback)
