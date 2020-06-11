@@ -148,14 +148,14 @@ class IridiumInterface:
         url = "https://rockblock.rock7.com/rockblock/MT"
         querystring = body
         response = requests.request("POST", self.__url, params=querystring)
-        #print(response)
-        print(request)
-        self.__waiting_for_confirm[request] = (idx, data)
+        print(response)
+        #print(request)
+        #self.__waiting_for_confirm[request] = (idx, data)
         print(idx, body)
         print(555)
         #print(body)
         self.__lock.release()
-        self.__http_client.fetch(request, self.__on_message_sent)
+        #self.__http_client.fetch(request, self.__on_message_sent)
         
 
     def start(self):
