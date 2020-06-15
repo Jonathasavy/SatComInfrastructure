@@ -25,7 +25,7 @@ def printmsg(data):
             print msg
 
 def main():
-    message = 'fd090000eeffbe000000000000000608c0040365e6'
+    message = 'fd06000008ffbe0b000000000406010152b1'
     printmsg(message.decode('hex'))
 
 if __name__ == '__main__':

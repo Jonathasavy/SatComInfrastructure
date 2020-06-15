@@ -145,14 +145,14 @@ class IridiumInterface:
         self.__post_data['data'] = data.encode('hex')
         body = tornado.httputil.urlencode(self.__post_data)
         #request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
-        url = "https://rockblock.rock7.com/rockblock/MT"
-        querystring = body
-        response = requests.request("POST", self.__url, params=querystring)
-        print(response)
+        #url = "https://rockblock.rock7.com/rockblock/MT"
+        #querystring = body
+        #response = requests.request("POST", self.__url, params=querystring)
+        #print(response)
         #print(request)
         #self.__waiting_for_confirm[request] = (idx, data)
-        print(idx, body)
-        print(555)
+        #print(idx, body)
+        #print(555)
         #print(body)
         self.__lock.release()
         #self.__http_client.fetch(request, self.__on_message_sent)
