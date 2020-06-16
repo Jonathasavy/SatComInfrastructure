@@ -141,19 +141,19 @@ class IridiumInterface:
         self.__lock.acquire()
         LOGGER.warn('Sending MT message # %i to Iridium', idx)
         data1 = data.encode('hex')
-        #body = tornado.httputil.urlencode(self.__post_data)
+       body = tornado.httputil.urlencode(self.__post_data)
         #request = tornado.httpclient.HTTPRequest(self.__url, method='POST', body=body)
         url = "https://rockblock.rock7.com/rockblock/MT"
-        querystring = {"imei":"300434063876730","username":"pi@avy.eu","password":"th3sky1sn0tth3l1m1tROC","data":data1,"flush":"yes"}
-        response = requests.request("POST", url, params=querystring)
+        querystring = body
+        response = requests.request("POST", self.__url, params=querystring)
         print(response)
+        #print(request)
         #self.__waiting_for_confirm[request] = (idx, data)
-        # print(request)
-        print(idx, data1)
-        print(555)
+        #print(idx, body)
+        #print(555)
         #print(body)
         self.__lock.release()
-        # self.__http_client.fetch(request, self.__on_message_sent)
+        #self.__http_client.fetch(request, self.__on_message_sent)
 
     def start(self):
         args = dict(cb=self.on_message_callback)
